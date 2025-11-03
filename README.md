@@ -72,7 +72,7 @@ flowchart TD
     LS --> TC1([Task completed])
 
     %% --- Rama central ---
-    T1 --> T2
+    T1 --> |Only if I complete Task 1|T2
     T2 --> ZH2[Zona Hunted]
     ZH2 --> ST2[[step on tails<br>red + blue]]
     ST2 --> ZM2[Zona Mountain]
@@ -82,7 +82,7 @@ flowchart TD
     BC --> |NO| TC2([Task completed])
 
     %% --- Rama derecha ---
-    T2 --> T3
+    T2 --> |Only if I complete Task 2|T3
     T3 --> ZH3[Zona Hunted]
     ZH3 --> ST3[[step on tails<br>Blue + green]]
     ST3 --> ZM3[Zona Meadow]
@@ -90,7 +90,7 @@ flowchart TD
     DS --> GW{Get out of the way}
     GW --> |SI| ZH2
     GW --> |NO| TC3([Task completed])
-    T3 --> Victory
+    T3 --> |Only if I complete Task 3|Victory
 
     %% --- Estilo (blanco y negro) ---
     classDef default stroke:#000,fill:#fff,color:#000,stroke-width:1px;
@@ -153,11 +153,12 @@ flowchart LR
     ST1 --> ZM1[Zona Meadow]
     ZM1 --> LS[[Levitation spell<br>Repair car]]
     LS --> TC1([Task completed])
+    TC1 --> T2
 ```
 
 ## Tarea 2
 
-La segunda tarea se realiza en la cima de la momntaña y consiste en cargar 3 barriles de trigo en el carro, para lo que es necesario en primer lugar que el carro esté arreglado (listo para recibir los barriles). En la cima de la momntaña hay muchos barriles disponibles -brillando con cierta luz morada- pero pesan demasiado, por lo que hay que ponerse cerca de ellos, apuntar en dirección al carro y «empujarlos» (haciendo clic derecho) monte abajo gracias al hechizo de propulsión. Este se activa cuando la luz de las baldosas es morada (baldosas roja y azul activas a la vez), haciendo que caigan rodando y -con suerte- acaben cerca del carro arreglado. Si un barril choca contra otros objetos del escenario que no sean el carro arreglado, recibe daño… y si acumula mucho daño, se destruye y desaparece (reapareciendo en su sitio original otra vez a los 5 segundos).
+La segunda tarea se realiza en la cima de la momntaña y consiste en cargar 3 barriles de trigo en el carro, para lo que es necesario en primer lugar que el carro esté arreglado (listo para recibir los barriles). En la cima de la momntaña hay muchos barriles disponibles -brillando con cierta luz morada- pero pesan demasiado, por lo que hay que ponerse cerca de ellos, apuntar en dirección al carro y «empujarlos» (haciendo clic derecho) monte abajo gracias al hechizo de propulsión. Este se activa cuando la luz de las baldosas es morada (baldosas roja y azul activas a la vez), haciendo que caigan rodando y -con suerte- acaben cerca del carro arreglado. Si un barril choca contra otros objetos del escenario que no sean el carro arreglado, recibe daño y si acumula 3 daños, se destruye y desaparece (reapareciendo en su sitio original otra vez a los 5 segundos).
 
 ```mermaid
 flowchart LR
@@ -168,16 +169,23 @@ flowchart LR
     PS --> BC{Barrel colision<br>+3}
     BC --> |SI| ZM2
     BC --> |NO| TC2([Task completed])
+    TC2 --> T3
 ```
 
 ## Tarea 3
 
-La tercera y última zona es un interior y consiste en atravesar las estancias interiores hasta el corazón del castillo, con varias puertas y algunas trampas. No hay “enemigos” como tales, sólo objetos con movimiento que resultan molestos e incluso mortales para el jugador, y las llaves de las puertas mencionadas anteriormente. Si el avatar muere, será necesario repetir la zona. Finalmente al coger el gran lingote dorado en el interior del castillo, la partida termina.
+La tercera y última tarea se realiza también en el prado, yendo hacia el molino que está situado al este del caserón. En este nivel hay un río que dificulta llegar al molino, pero afortunadamente hay un puente que nos permite cruzar sobre él. Conduciendo debidamente el carro (arreglado y cargado -brillando con cierta luz cian-) a lo largo del camino que cruza dicho puente se llega al pie del molino. Es un camino bastante tortuoso que, con el hechizo de conducción activo (luz de las baldosas cian, es decir, verde y azul a la vez) y haciendo clic derecho podemos empezar a recorrer. Lo primero es «tomar el control» del carro con una cámara muy cercana, en primera persona, y después hacemos que este se mueva sólo, mágicamente. El movimiento del ratón permite girar nuestro vehículo-avatar levemente a izquierda o derecha, mantener el clic izquierdo pulsado hace que el carro acelere y soltarlo permite disminuir la velocidad, aunque tiene bastante inercia. Si nos salimos totalmente del camino, el carro vuelve a aparecer en su posición inicial pero sin barriles, con lo que habría que repetir la segunda tarea. Cuando se termina esta tercera tarea, el juego ha sido completado y vuelve a empezar desde el principio, aunque cada vez que se completa se añade un saco de harina dentro del caserón, como trofeo y prueba permanente de los méritos del jugador.
 
 ```mermaid
 flowchart LR
-    n2["El corrazón del castillo"] --> n3["Laberinto"]
-    n3 --> n4["El gran lingote dorado, dentro de todo"]
+    T3 --> ZH3[Zona Hunted]
+    ZH3 --> ST3[[step on tails<br>Blue + green]]
+    ST3 --> ZM3[Zona Meadow]
+    ZM3 --> DS[[Driving spell<br>Transport barrels]]
+    DS --> GW{Get out of the way}
+    GW --> |SI| T2
+    GW --> |NO| TC3([Task completed])
+    TC3 --> Victory
 ```
 
 # Referencia
