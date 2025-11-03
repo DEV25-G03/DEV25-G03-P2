@@ -52,24 +52,67 @@ Debido a la falta de tiempo, hemos decidido a no implenmentar sonido en este poy
 
 # Dinamica
 
-La dinamica del juego consiste en pasar todos las zonas hasta llegar al final, no hay limite de tiempo y la muerte no supone la final del juego.
+La dinámica del juego se basa en resolver pequeños puzles dentro de un juego con simulación física: manejamos al aprendiz en las inmediaciones del caserón del brujo y tendremos que usar nuestros poderes para realizar todas las tareas domésticas que nos ha encargado el maestro.
 
 ```mermaid
 flowchart TD
-    n2(["Start"]) --> D["Zone A"]
-    n3["Dead"] --> D
-    D --> n3 & n4["Zone B"]
-    n4 --> n5["Dead"] & n6["Zone C"]
-    n5 --> n7["check point"]
-    n6 --> n8["Dead"] & n9(["Victory"])
-    n7 --> n6 & n5
-    n8 --> n6
-    n3@{ shape: rounded}
-    n4@{ shape: rect}
-    n5@{ shape: rounded}
-    n6@{ shape: rect}
-    n7@{ shape: rect}
-    n8@{ shape: rounded}
+    %% --- Nodos principales ---
+    Start([start])
+    T1[Tarea 1]
+    T2[Tarea 2]
+    T3[Tarea 3]
+    Victory([Victory])
+
+    %% --- Rama izquierda ---
+    Start --> T1
+    T1 --> ZH1[Zona Hunted]
+    ZH1 --> ST1[[step on tails<br>red + green]]
+    ST1 --> ZM1[Zona Meadow]
+    ZM1 --> LS[[Levitation spell<br>Repair car]]
+    LS --> TC1([Task completed])
+
+    %% --- Rama central ---
+    T1 --> T2
+    T2 --> ZH2[Zona Hunted]
+    ZH2 --> ST2[[step on tails<br>red + blue]]
+    ST2 --> ZM2[Zona Mountain]
+    ZM2 --> PS[[Propulsion spell<br>Load barrels]]
+    PS --> BC{Barrel colision<br>+3}
+    BC --> |SI| ZM2
+    BC --> |NO| TC2([Task completed])
+
+    %% --- Rama derecha ---
+    T2 --> T3
+    T3 --> ZH3[Zona Hunted]
+    ZH3 --> ST3[[step on tails<br>Blue + green]]
+    ST3 --> ZM3[Zona Meadow]
+    ZM3 --> DS[[Driving spell<br>Transport barrels]]
+    DS --> GW{Get out of the way}
+    GW --> |SI| ZM2
+    GW --> |NO| TC3([Task completed])
+    T3 --> Victory
+
+    %% --- Estilo (blanco y negro) ---
+    classDef default stroke:#000,fill:#fff,color:#000,stroke-width:1px;
+
+    %% Flechas del flujo principal
+    linkStyle 0 stroke:red,stroke-width:5px;
+    linkStyle 6 stroke:red,stroke-width:5px;
+    linkStyle 14 stroke:red,stroke-width:5px;
+    linkStyle 22 stroke:red,stroke-width:5px;
+
+    %% Flechas del tarea terminada o condicional si/no
+    linkStyle 12 stroke:orange,stroke-width:2px;
+    linkStyle 20 stroke:orange,stroke-width:2px;
+
+    linkStyle 5 stroke:green,stroke-width:2px;
+    linkStyle 13 stroke:green,stroke-width:2px;
+    linkStyle 21 stroke:green,stroke-width:2px;
+
+    %% Flechas del flujo principal
+    style ST1 fill:yellow,stroke:black,stroke-width:2px
+    style ST2 fill:purple,stroke:black,stroke-width:2px
+    style ST3 fill:cyan,stroke:black,stroke-width:2px
 ```
 
 ## Objetivo
