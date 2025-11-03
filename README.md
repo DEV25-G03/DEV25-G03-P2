@@ -34,13 +34,13 @@ El diseño tiene estas secciones:
     - [Castigo](#Castigo)
 - [Mecanica](#Mecanica)
 - [Contenido](#Contenido)
-    - [Zona A](#Zona-A)
-    - [Zona B](#Zona-B)
-    - [Zona C](#Zona-C)
+    - [Tarea 1](#Tarea-1)
+    - [Tarea 2](#Tarea-2)
+    - [Tarea 3](#Tarea-3)
 
 # Estetica
 
-El entorno virtual se basa en la plantilla Third Person que ofrece Unreal Engine, que recrea un mundo 3D con vista en tercera persona, a través de una cámara que sigue al avatar; además se incluye el contenido del paquete Starter Content. 
+El entorno virtual se basa en la plantilla Top Down (sin variantes) que ofrece Unreal Engine, que recrea un mundo 3D con vista cenital en tercera persona, con el movimiento del avatar controlado por el ratón. 
 
 ## Grafico
 
@@ -157,12 +157,17 @@ flowchart LR
 
 ## Tarea 2
 
-La segunda zona consiste en escalar la muralla del castillo aprovechando sus salientes, siendo necesario el uso de pastillas para saltar entre ciertas plataformas. Aunque prime la verticalidad, conviene dividir la escalada en partes, de modo que si el avatar cae, sólo tiene que repetir la escalada de la última parte. Algún saliente estará dañado y se romperá si el avatar lo pisa.
+La segunda tarea se realiza en la cima de la momntaña y consiste en cargar 3 barriles de trigo en el carro, para lo que es necesario en primer lugar que el carro esté arreglado (listo para recibir los barriles). En la cima de la momntaña hay muchos barriles disponibles -brillando con cierta luz morada- pero pesan demasiado, por lo que hay que ponerse cerca de ellos, apuntar en dirección al carro y «empujarlos» (haciendo clic derecho) monte abajo gracias al hechizo de propulsión. Este se activa cuando la luz de las baldosas es morada (baldosas roja y azul activas a la vez), haciendo que caigan rodando y -con suerte- acaben cerca del carro arreglado. Si un barril choca contra otros objetos del escenario que no sean el carro arreglado, recibe daño… y si acumula mucho daño, se destruye y desaparece (reapareciendo en su sitio original otra vez a los 5 segundos).
 
 ```mermaid
 flowchart LR
-    D["La muralla del castillo"] --> n1["Escalares o truncos que direge hacia la correzáon el castillo"]
-    n1 --> n2["El corrazón del castillo"]
+    T2 --> ZH2[Zona Hunted]
+    ZH2 --> ST2[[step on tails<br>red + blue]]
+    ST2 --> ZM2[Zona Mountain]
+    ZM2 --> PS[[Propulsion spell<br>Load barrels]]
+    PS --> BC{Barrel colision<br>+3}
+    BC --> |SI| ZM2
+    BC --> |NO| TC2([Task completed])
 ```
 
 ## Tarea 3
