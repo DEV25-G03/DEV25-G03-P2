@@ -13,12 +13,11 @@ Los ficheros más importantes del proyecto están disponible en este repositorio
 
 Para este proyecto hace falta descargar los ficheros ZIP:
 
-------------------------------------------------------------------cut from here--------------------------------------
 
-- Characters
-- LevelPrototyping
-- ThirdPerson
-- Variant_Platforming
+- Cursor
+- [Stylized Fantasy Provencal](https://www.fab.com/listings/ced19ea1-31ed-437f-ae64-2b6b1561fede)
+- TopDown
+- StarterContent
 
 Y luego extraerlos dentro del archivo **Content**
  
