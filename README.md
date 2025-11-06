@@ -13,7 +13,6 @@ Los ficheros más importantes del proyecto están disponible en este repositorio
 
 Para este proyecto hace falta descargar los ficheros ZIP:
 
-
 - Cursor
 - [Stylized Fantasy Provencal](https://www.fab.com/listings/ced19ea1-31ed-437f-ae64-2b6b1561fede)
 - TopDown
@@ -56,40 +55,40 @@ La dinámica del juego se basa en resolver pequeños puzles dentro de un juego c
 ```mermaid
 flowchart TD
     %% --- Nodos principales ---
-    Start([start])
+    Start([Inicio])
     T1[Tarea 1]
     T2[Tarea 2]
     T3[Tarea 3]
-    Victory([Victory])
+    Victory([Victoria])
 
     %% --- Rama izquierda ---
     Start --> T1
-    T1 --> ZH1[Zona Hunted]
-    ZH1 --> ST1[[step on tails<br>red + green]]
-    ST1 --> ZM1[Zona Meadow]
-    ZM1 --> LS[[Levitation spell<br>Repair car]]
-    LS --> TC1([Task completed])
+    T1 --> ZH1[Nivel 1 - cacerón del brujo]
+    ZH1 --> ST1[[Pisar en baldosas<br>rojo + verde]]
+    ST1 --> ZM1[Nivel 2 - prado]
+    ZM1 --> LS[[Hechizo de levitación<br>Reparar carro]]
+    LS --> TC1([Tarea completada])
 
     %% --- Rama central ---
-    T1 --> |Only if I complete Task 1|T2
-    T2 --> ZH2[Zona Hunted]
-    ZH2 --> ST2[[step on tails<br>red + blue]]
-    ST2 --> ZM2[Zona Mountain]
-    ZM2 --> PS[[Propulsion spell<br>Load barrels]]
-    PS --> BC{Barrel colision<br>+3}
+    T1 --> |Solo si completó la tarea 1|T2
+    T2 --> ZH2[Nivel 1 - cacerón del brujo]
+    ZH2 --> ST2[[Pisar en baldosas<br>rojo + azul]]
+    ST2 --> ZM2[Nivel 3 - monte]
+    ZM2 --> PS[[Hechizo de propulsión<br>Cargar barriles]]
+    PS --> BC{Colisión de barriles<br>+3}
     BC --> |SI| ZM2
-    BC --> |NO| TC2([Task completed])
+    BC --> |NO| TC2([Tarea completada])
 
     %% --- Rama derecha ---
-    T2 --> |Only if I complete Task 2|T3
-    T3 --> ZH3[Zona Hunted]
-    ZH3 --> ST3[[step on tails<br>Blue + green]]
-    ST3 --> ZM3[Zona Meadow]
-    ZM3 --> DS[[Driving spell<br>Transport barrels]]
-    DS --> GW{Get out of the way}
+    T2 --> |Solo si completó la tarea 2|T3
+    T3 --> ZH3[Nivel 1 - cacerón del brujo]
+    ZH3 --> ST3[[Pisar en baldosas<br>azul + verde]]
+    ST3 --> ZM3[Nivel 2 - prado]
+    ZM3 --> DS[[Hechizo de conducción<br>Transporte de barriles]]
+    DS --> GW{Si sale del camino}
     GW --> |SI| ZH2
-    GW --> |NO| TC3([Task completed])
-    T3 --> |Only if I complete Task 3|Victory
+    GW --> |NO| TC3([Tarea completada])
+    T3 --> |Solo si completó la tarea 3|Victory
 
     %% --- Estilo (blanco y negro) ---
     classDef default stroke:#000,fill:#fff,color:#000,stroke-width:1px;
@@ -146,12 +145,12 @@ La primera tarea se realiza en el prado, cerca de la fachada del caserón y cons
 
 ```mermaid
 flowchart LR
-    Start --> T1
-    T1 --> ZH1[Zona Hunted]
-    ZH1 --> ST1[[step on tails<br>red + green]]
-    ST1 --> ZM1[Zona Meadow]
-    ZM1 --> LS[[Levitation spell<br>Repair car]]
-    LS --> TC1([Task completed])
+    Inicio --> T1
+    T1 --> ZH1[Nivel 1 - cacerón del brujo]
+    ZH1 --> ST1[[Pisar en baldosas<br>rojo + verde]]
+    ST1 --> ZM1[Nivel 2 - prado]
+    ZM1 --> LS[[Hechizo de levitación<br>Reparar carro]]
+    LS --> TC1([Tarea completada])
     TC1 --> T2
 ```
 
@@ -161,13 +160,13 @@ La segunda tarea se realiza en la cima de la momntaña y consiste en cargar 3 ba
 
 ```mermaid
 flowchart LR
-    T2 --> ZH2[Zona Hunted]
-    ZH2 --> ST2[[step on tails<br>red + blue]]
-    ST2 --> ZM2[Zona Mountain]
-    ZM2 --> PS[[Propulsion spell<br>Load barrels]]
-    PS --> BC{Barrel colision<br>+3}
+    T2 --> ZH2[Nivel 1 - cacerón del brujo]
+    ZH2 --> ST2[[Pisar en baldosas<br>rojo + azul]]
+    ST2 --> ZM2[Nivel 3 - monte]
+    ZM2 --> PS[[Hechizo de propulsión<br>Cargar barriles]]
+    PS --> BC{Colisión de barriles<br>+3}
     BC --> |SI| ZM2
-    BC --> |NO| TC2([Task completed])
+    BC --> |NO| TC2([Tarea completada])
     TC2 --> T3
 ```
 
@@ -177,24 +176,21 @@ La tercera y última tarea se realiza también en el prado, yendo hacia el molin
 
 ```mermaid
 flowchart LR
-    T3 --> ZH3[Zona Hunted]
-    ZH3 --> ST3[[step on tails<br>Blue + green]]
-    ST3 --> ZM3[Zona Meadow]
-    ZM3 --> DS[[Driving spell<br>Transport barrels]]
-    DS --> GW{Get out of the way}
-    GW --> |SI| T2
-    GW --> |NO| TC3([Task completed])
-    TC3 --> Victory
+    T3 --> ZH3[Nivel 1 - cacerón del brujo]
+    ZH3 --> ST3[[Pisar en baldosas<br>azul + verde]]
+    ST3 --> ZM3[Nivel 2 - prado]
+    ZM3 --> DS[[Hechizo de conducción<br>Transporte de barriles]]
+    DS --> GW{Si sale del camino}
+    GW --> |SI| ZH2
+    GW --> |NO| TC3([Tarea completada])
+    TC3 --> Victoria
 ```
 
 # Referencia
 
-[Fūun! Takeshi Jō]( https://narratech.com/es/desarrollo-de-videojuegos-25-26/)
-
-[Castle - Base](https://github.com/narratech/castle-base)
+[Enunciado de la practica](https://narratech.com/es/desarrollo-de-videojuegos/contenido/aprendiz-de-brujo/)
 
 # Video demo
-https://drive.google.com/drive/folders/14ALIV9pRV7xGzeA53S0Z2yKjn5nXuOZI?usp=sharing
 
 El enlace contiene videos de visibilidad de todos los escenarios y videos de jugabilidad
 
