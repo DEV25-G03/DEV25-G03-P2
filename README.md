@@ -17,6 +17,7 @@ Para este proyecto hace falta descargar los ficheros ZIP:
 - [Stylized Fantasy Provencal](https://www.fab.com/listings/ced19ea1-31ed-437f-ae64-2b6b1561fede)
 - TopDown
 - StarterContent
+- Character
 
 Y luego extraerlos dentro del archivo **Content**
  
