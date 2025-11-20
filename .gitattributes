@@ -5,7 +5,7 @@
 # (el código fuente -Source- es texto y no se trata con LFS, son los recursos -Content- lo que nos interesa tratar así, sea nuestros o ThirdParty con derecho a publicarlos... aunque muchos los ignoraremos y no estarán en el repositorio)
 
 # Tipos de ficheros específicos de Unreal Engine
-
+*.uasset filter=fs diff=lfs merge=lfs -text
 *.umap filter=lfs diff=lfs merge=lfs -text
 
 # Tipos de ficheros de recursos crudos (que pueden salir en diversas carpetas, entiendo)
