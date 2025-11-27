@@ -192,5 +192,8 @@ flowchart LR
 
 # Video demo
 
-El enlace contiene videos de visibilidad de todos los escenarios y videos de jugabilidad
+Puede verse en el siguiente enlace de youtube:
+https://youtu.be/CJNqOIP9W04
 
+Puede descargarse en el siguiente enlace:
+https://drive.google.com/drive/folders/10081-mjstAYVapsAZCv9_XFS3tac2KFg?usp=sharing
